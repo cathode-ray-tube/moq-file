@@ -1,5 +1,3 @@
-![moq-file-logo](https://github.com/cathode-ray-tube/moq-file/blob/main/assets/moq-file.jpeg)
-
 # moq-file
 
 A file format for storing Media over QUIC (MoQ) streams.
@@ -13,3 +11,5 @@ Early-stage project. Format, interfaces, and implementation details are subject 
 ## License
 
 This project is dual-licensed: MIT OR Apache-2.0, choose either. See LICENSE-MIT and LICENSE-APACHE-2.0 in the repository root.
+
+![moq-file-logo](https://github.com/cathode-ray-tube/moq-file/blob/main/assets/moq-file.jpeg)
