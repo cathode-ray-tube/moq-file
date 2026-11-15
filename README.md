@@ -1,3 +1,5 @@
+![moq-file-logo](https://github.com/cathode-ray-tube/moq-file/blob/main/assets/moq-file.jpeg)
+
 # moq-file
 
 A file format for storing Media over QUIC (MoQ) streams.
