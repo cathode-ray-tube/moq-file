@@ -1,12 +1,53 @@
 # moq-file
 
-A file format for storing Media over QUIC (MoQ) streams.
+**moq-file** is a file format for recording a Media over QUIC (MoQ) broadcast and replaying it later. A recording preserves the catalog and complete MoQ objects, enabling real-time replay, timestamp-based seeking, and offline processing.
 
-`moq-file` is for recording MoQ streams to a file and reading them back later. Its goal is to preserve stream data for workflows such as archiving, replay, and offline processing.
+> **Status:** Early-stage proposal. The format and implementation may change.
 
-## Status
+## Goals
 
-Early-stage project. Format, interfaces, and implementation details are subject to change.
+- Preserve catalog messages, including catalog updates and deltas.
+- Store complete MoQ objects so a recording can be replayed.
+- Support per-track indexing and timestamp seeking.
+- Allow recording components to be written incrementally, then assembled into one file.
+
+## File layout
+
+A finalized `{broadcast_name}.moq` file contains a header, metadata, and the data sections referenced by that metadata:
+
+```text
++----------------------------------+
+| Magic: ASCII "MOQFILE"           |
++----------------------------------+
+| Container version                |
++----------------------------------+
+| Metadata length                  |
++----------------------------------+
+| Metadata                          |
+|  - Catalog format identifier     |
+|  - Catalog message data          |
+|  - Track identities              |
+|  - Per-track section descriptors |
+|    (offsets and lengths)          |
++----------------------------------+
+| Per-track index and frames       |
+| sections                         |
++----------------------------------+
+
+The metadata identifies the catalog format and preserves catalog messages in their original order, including updates or deltas. Catalog data is treated as opaque by the container; catalog-specific parsing is left to the reader.
+
+Each track has its own index and frames section. Section descriptors in the metadata let a reader locate them. Offsets are measured from the beginning of the finalized file.
+
+## Index and frames
+
+An index entry maps a timestamp to an object in that track’s frames section:
+
+```text
+timestamp | object offset | object length
+```
+The timestamp comes first. The object offset is relative to the beginning of that track’s frames section. The object length allows the reader to retrieve the complete stored object.
+
+The frames section stores complete MoQ objects, not just media payloads. The timestamp’s units and meaning, the index entry’s binary encoding, and the on-disk encoding of complete MoQ objects must be defined by the container version.
 
 ## License
 
