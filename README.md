@@ -1,4 +1,4 @@
-![moq-file-logo](https://github.com/cathode-ray-tube/moq-file/blob/main/assets/moq-file-diagram.jpeg)
+![moq-file-diagram](https://github.com/cathode-ray-tube/moq-file/blob/main/assets/moq-file-diagram.jpeg)
 
 # moq-file
 
