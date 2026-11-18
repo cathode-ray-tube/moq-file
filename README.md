@@ -44,7 +44,7 @@ A finalized `{broadcast_name}.moq` file contains a header, metadata, and the dat
 
 The metadata identifies the catalog format and preserves catalog messages in their original order, including updates or deltas. Catalog data is treated as opaque by the container; catalog-specific parsing is left to the reader.
 
-Each track has its own index and frames section. Section descriptors in the metadata let a reader locate them. Offsets are measured from the beginning of the finalized file.
+Each track has its own index and frames section. Section descriptors in the metadata let a reader locate them.
 
 Section offsets in the metadata are relative to the start of the data area: the byte immediately after the metadata. This lets the finalizer assemble the data sections without accounting for the header or metadata size when calculating their offsets.
 
