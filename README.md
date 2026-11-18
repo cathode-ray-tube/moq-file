@@ -32,8 +32,13 @@ A finalized `{broadcast_name}.moq` file contains a header, metadata, and the dat
 |  - Per-track section descriptors |
 |    (offsets and lengths)         |
 +----------------------------------+
-| Per-track index and frames       |
+| Per-track index and frame        |
 | sections                         |
++----------------------------------+
+| Integrity section                |
+|  - Per-section SHA-256 hashes    |
+|  - Merkle root                   |
+|  - Optional Ed25519 signature    |
 +----------------------------------+
 ```
 
@@ -69,6 +74,10 @@ When the broadcast ends, the finalizer assembles the catalog, each track’s ind
 {broadcast_name}.moq
 ```
 The metadata is written with the final section offsets and lengths. Track names used in temporary filenames must be escaped or encoded so they cannot accidentally create directories or invalid paths.
+
+## File Integrity
+
+The file is divided into sections, each hashed with SHA-256. These hashes form a Merkle tree whose root is stored in the file’s integrity metadata. Verification recomputes the root to detect corruption and identify altered sections. An optional Ed25519 signature can authenticate the root; without it, the hashes detect changes but do not prove who made them.
 
 ## License
 
