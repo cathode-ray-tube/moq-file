@@ -73,7 +73,7 @@ When the broadcast ends, the finalizer assembles the catalog, each track’s ind
 ```text
 {broadcast_name}.moq
 ```
-The metadata is written with the final section offsets and lengths. Track names used in temporary filenames must be escaped or encoded so they cannot accidentally create directories or invalid paths.
+The metadata is written with the final section offsets and lengths. Track names used in temporary filenames must be escaped, encoded or hashed so they cannot accidentally create directories or invalid paths.
 
 ## File Integrity
 
