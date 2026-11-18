@@ -25,12 +25,12 @@ A finalized `{broadcast_name}.moq` file contains a header, metadata, and the dat
 +----------------------------------+
 | Metadata length                  |
 +----------------------------------+
-| Metadata                          |
+| Metadata                         |
 |  - Catalog format identifier     |
 |  - Catalog message data          |
 |  - Track identities              |
 |  - Per-track section descriptors |
-|    (offsets and lengths)          |
+|    (offsets and lengths)         |
 +----------------------------------+
 | Per-track index and frames       |
 | sections                         |
